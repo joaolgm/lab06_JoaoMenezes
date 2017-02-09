@@ -2,15 +2,21 @@ package p2cg;
 
 public class Veterano extends Usuario {
 	
-	private double desconto;
-
-	public Veterano(String nome, String login, double dinheiro, double desconto) {
+	public Veterano(String nome, String login, int dinheiro, int x2p) {
 		super(nome, login, dinheiro);
-		this.desconto = desconto;
+		this.x2p = 1000;
 	}
 	
-	public double getDesconto(Jogo jogo) {
-		desconto = jogo.getPreco() - (1/5);
-		return desconto;
+	@Override
+	public void comprarJogo(Jogo jogo, int preco) {
+		double newPreco = preco - 1/5;
+		if (newPreco < this.dinheiro) {
+			jogosComprados.add(jogo);
+			dinheiro -= preco;
+		}
+	}
+
+	public void x2pPorJogo(Jogo jogo) {
+		x2p += (15 * jogo.getPreco());
 	}
 }
