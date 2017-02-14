@@ -17,6 +17,6 @@ public class Veterano extends Usuario {
 	}
 
 	public void x2pPorJogo(Jogo jogo) {
-		x2p += (15 * jogo.getPreco());
+		this.x2p += (15 * jogo.getPreco());
 	}
 }

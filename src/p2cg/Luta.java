@@ -2,7 +2,7 @@ package p2cg;
 
 public class Luta extends Jogo {
 
-	public Luta(String nome, double preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	public Luta(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
 		super(nome, preco, maiorScore, qtdVezesJogadas, qtdVezesZeradas);
 	}
 

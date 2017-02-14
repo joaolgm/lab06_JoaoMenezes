@@ -2,7 +2,7 @@ package p2cg;
 
 public class RPG extends Jogo {
 
-	public RPG(String nome, double preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	public RPG(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
 		super(nome, preco, maiorScore, qtdVezesJogadas, qtdVezesZeradas);
 	}
 

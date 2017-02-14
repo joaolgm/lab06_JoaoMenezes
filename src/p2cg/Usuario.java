@@ -27,6 +27,10 @@ public abstract class Usuario {
 		jogo.registraJogada(jogo, score, zerou);
 	}
 
+	public int getQtdJogosComprados(){
+		return jogosComprados.size();
+	}
+	
 	public String getNome() {
 		return nome;
 	}

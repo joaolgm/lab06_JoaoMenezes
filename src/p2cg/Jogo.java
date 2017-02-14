@@ -1,13 +1,26 @@
 package p2cg;
 
+/**
+ * Classe responsavel por moldar o conceito abstrato de Jogo
+ * @author Joao Menezes
+ */
 public abstract class Jogo {
 	private String nome;
-	private double preco;
+	private int preco;
 	private int maiorScore = 0;
 	private int qtdVezesJogadas = 0;
 	private int qtdVezesZeradas = 0;
 	
-	public Jogo(String nome, double preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	/**
+	 * Metodo construtor de Jogo.
+	 * @param nome
+	 * @param preco
+	 * @param maiorScore
+	 * @param qtdVezesJogadas
+	 * @param qtdVezesZeradas
+	 */
+	
+	public Jogo(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
 		this.nome = nome;
 		this.preco = preco;
 		this.maiorScore = maiorScore;
@@ -47,7 +60,7 @@ public abstract class Jogo {
 		this.qtdVezesZeradas = qtdVezesZeradas;
 	}
 
-	public double getPreco() {
+	public int getPreco() {
 		return preco;
 	}
 	

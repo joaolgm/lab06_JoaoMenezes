@@ -2,9 +2,18 @@ package p2cg;
 
 import java.util.HashMap;
 
+/**
+ * Classe responsavel pela simbolizacao da Loja
+ * @author Joao Menezes
+ */
+
 public class Loja {
 	private HashMap<String, Usuario> usuarios;
 	
+	/**
+	 * Metodo para adicionar usuarios na loja.
+	 * @param usuario
+	 */
 	public void adicionaUsuario(Usuario usuario) {
 		usuarios.put(usuario.getLogin(), usuario);
 	}
@@ -23,6 +32,17 @@ public class Loja {
 			}
 		}
 	}
+	
+	public void upgrade(String login) {
+		for (String username : usuarios.keySet()) {
+			if (usuarios.get(username).getX2p() >= 1000) {
+				Veterano user = new Veterano(usuarios.get(username).getNome(), login, usuarios.get(username).getDinheiro(), usuarios.get(username).getX2p());
+				usuarios.remove(username);
+				usuarios.put(login, user);
+			}
+		}
+	}
+	
 	@Override
 	public String toString() {
 		String imprime = "=== Central P2-CG ==="; 
@@ -57,4 +77,5 @@ public class Loja {
 			return false;
 		return true;
 	}
+
 }

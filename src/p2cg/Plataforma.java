@@ -2,7 +2,7 @@ package p2cg;
 
 public class Plataforma extends Jogo {
 
-	public Plataforma(String nome, double preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	public Plataforma(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
 		super(nome, preco, maiorScore, qtdVezesJogadas, qtdVezesZeradas);
 	}
 

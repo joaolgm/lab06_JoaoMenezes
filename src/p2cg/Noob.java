@@ -17,6 +17,6 @@ public class Noob extends Usuario {
 	}
 	
 	public void x2pPorJogo(Jogo jogo) {
-		x2p += (10 * jogo.getPreco());
+		this.x2p += (10 * jogo.getPreco());
 	}
 }
