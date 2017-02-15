@@ -2,19 +2,24 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import p2cg.Plataforma;
-import p2cg.RPG;
 import p2cg.Usuario;
 import p2cg.Veterano;
 
 public class UsuarioTest {
 
+	Usuario user;
+	Plataforma jogo3;
 	
-	Usuario user = new Veterano("joao", "joao.menezes", 100, 1000);
-	RPG jogo1 = new RPG("ff", 10, 0, 0, 0);
-	Plataforma jogo3 = new Plataforma("mario", 1337, 0, 0, 0);
+	@Before
+	public void start() throws Exception {
+	user = new Veterano("joao", "joao.menezes", 100, 1000);
+	jogo3 = new Plataforma("mario", 1337, 0, 0, 0);
+	}
+	
 	@Test
 	public void testComprarJogo() {
 		try {

@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import p2cg.Jogo;
@@ -10,9 +11,15 @@ import p2cg.Veterano;
 
 public class VeteranoTest {
 	
-	Veterano user = new Veterano("joao", "joao.menezes", 100, 1000);
-	Plataforma jogo3 = new Plataforma("mario", 1337, 0, 0, 0);
-
+	Veterano user;
+	Plataforma jogo3;
+	
+	@Before
+	public void start() throws Exception {
+	user = new Veterano("joao", "joao.menezes", 100, 1000);
+	jogo3 = new Plataforma("mario", 1337, 0, 0, 0);
+	}
+	
 	@Test
 	public void testComprarJogo(Jogo jogo, int preco) {
 		try {

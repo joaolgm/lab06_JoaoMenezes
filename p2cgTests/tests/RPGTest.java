@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import p2cg.Luta;
@@ -10,9 +11,15 @@ import p2cg.Veterano;
 
 public class RPGTest {
 	
-	RPG jogo1 = new RPG("ff", 10, 0, 0, 0);
-	Veterano user = new Veterano("joao", "joao.menezes", 100, 1000);
-
+	RPG jogo1;
+	Veterano user;
+	
+	@Before
+	public void start() throws Exception {
+	jogo1 = new RPG("ff", 10, 0, 0, 0);
+	user = new Veterano("joao", "joao.menezes", 100, 1000);
+	}
+	
 	@Test
 	public void testRegistraJogada() {
 		try {
@@ -25,7 +32,7 @@ public class RPGTest {
 	@Test
 	public void testRPG() {
 		try {
-			Luta jogo1 = new Luta(null, 10, 0, 0, 0);
+			jogo1 = new RPG(null, 10, 0, 0, 0);
 		} catch (Exception e) {
 			assertEquals("Nome do jogo nao pode ser nulo.", e.getMessage());
 		}
