@@ -1,5 +1,9 @@
 package p2cg;
-
+/**
+ * Classe responsavel por especializar o conceito de Usuario para Veterano.
+ * @author Joao Menezes
+ *
+ */
 public class Veterano extends Usuario {
 	
 	public Veterano(String nome, String login, int dinheiro, int x2p) {
@@ -16,6 +20,10 @@ public class Veterano extends Usuario {
 		}
 	}
 
+	/**
+	 * Metodo responsavel por calcular a quantidade de x2p por jogo comprado.
+	 * @param jogo
+	 */
 	public void x2pPorJogo(Jogo jogo) {
 		this.x2p += (15 * jogo.getPreco());
 	}

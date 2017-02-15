@@ -1,7 +1,11 @@
 package p2cg;
 
 import java.util.HashSet;
-
+/**
+ * Classe responsavel por moldar o conceito abstrato de Usuario.
+ * @author Joao Menezes
+ *
+ */
 public abstract class Usuario {
 
 	private String nome, login;
@@ -14,17 +18,28 @@ public abstract class Usuario {
 		this.login = login;
 		this.dinheiro = dinheiro;
 	}
-		
-	public void comprarJogo(Jogo jogo, int preco) {
+	/**
+	 * Metodo responsavel por comprar jogo para usuario e adicionar na lista de jogos.
+	 * @param jogo
+	 * @param preco
+	 * @throws Exception 
+	 */
+	public void comprarJogo(Jogo jogo, int preco) throws Exception {
 		double newPreco = preco - jogo.getPreco();
 		if (newPreco < this.dinheiro) {
 			jogosComprados.add(jogo);
 			dinheiro -= preco;
 		}
 	}
-	
+	/**
+	 * Metodo responsavel por registrar a quantidade de vezes que um jogo foi jogado.
+	 * @param jogo
+	 * @param score
+	 * @param zerou
+	 */
 	public void registraJogadas(Jogo jogo, int score, boolean zerou) {
-		jogo.registraJogada(jogo, score, zerou);
+		int pontos = jogo.registraJogada(jogo, score, zerou);
+		setX2p(pontos);
 	}
 
 	public int getQtdJogosComprados(){
@@ -35,7 +50,10 @@ public abstract class Usuario {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) throws Exception {
+		if (nome == null || nome.equals("")) {
+			throw new Exception("Nome nao pode ser nulo ou vazio");
+		}
 		this.nome = nome;
 	}
 
@@ -51,7 +69,10 @@ public abstract class Usuario {
 		return dinheiro;
 	}
 
-	public void setDinheiro(int dinheiro) {
+	public void setDinheiro(int dinheiro) throws Exception{
+		if (dinheiro < 0) {
+			throw new Exception("Quantidade de dinheiro invalida");
+		}
 		this.dinheiro = dinheiro;
 	}
 

@@ -1,8 +1,12 @@
 package p2cg;
-
+/**
+ * Classe responsavel por especializar o conceito de Jogo para Luta.
+ * @author Joao Menezes
+ *
+ */
 public class Luta extends Jogo {
 
-	public Luta(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	public Luta(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) throws Exception {
 		super(nome, preco, maiorScore, qtdVezesJogadas, qtdVezesZeradas);
 	}
 

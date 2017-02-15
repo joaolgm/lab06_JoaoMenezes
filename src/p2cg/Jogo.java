@@ -20,7 +20,16 @@ public abstract class Jogo {
 	 * @param qtdVezesZeradas
 	 */
 	
-	public Jogo(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) {
+	public Jogo(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) throws Exception {
+		if (nome.equals("") || nome.equals(null)) {
+			throw new Exception("Nome nulo ou vazio");
+		} if (preco < 0) {
+			throw new Exception("Valor invalido");
+		} if (maiorScore < 0) {
+			throw new Exception("Score invalido");
+		} if (qtdVezesJogadas < 0 || qtdVezesZeradas < 0) {
+			throw new Exception("Quantidade invalida");
+		}
 		this.nome = nome;
 		this.preco = preco;
 		this.maiorScore = maiorScore;

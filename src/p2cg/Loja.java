@@ -11,20 +11,31 @@ public class Loja {
 	private HashMap<String, Usuario> usuarios;
 	
 	/**
-	 * Metodo para adicionar usuarios na loja.
+	 * Metodo para adicionar usuarios na loja utilizando o objeto usuario.
 	 * @param usuario
 	 */
 	public void adicionaUsuario(Usuario usuario) {
 		usuarios.put(usuario.getLogin(), usuario);
 	}
-	
-	public void adicionaDinheiro(Usuario usuario, int dinheiro) {
+	/**
+	 * Metodo para adicionar dinheiro na conta de certo usuario.
+	 * @param usuario
+	 * @param dinheiro
+	 * @throws Exception 
+	 */
+	public void adicionaDinheiro(Usuario usuario, int dinheiro) throws Exception {
 		if (usuarios.containsKey(usuario.getLogin())) {
 			usuario.setDinheiro(dinheiro);
 		}
 	}
-	
-	public void venderJogos(Jogo jogo, Usuario usuario, int preco) {
+	/**
+	 * Metodo para vender jogos para algum usuario.
+	 * @param jogo
+	 * @param usuario
+	 * @param preco
+	 * @throws Exception 
+	 */
+	public void venderJogos(Jogo jogo, Usuario usuario, int preco) throws Exception {
 		if (usuarios.containsKey(usuario.getLogin())) {
 			if (usuario.getDinheiro() >= preco) {
 				usuario.setDinheiro((usuario.getDinheiro() - preco));
@@ -32,7 +43,10 @@ public class Loja {
 			}
 		}
 	}
-	
+	/**
+	 * Metodo para dar upgrade para "veterano" em contas de usuarios.
+	 * @param login
+	 */
 	public void upgrade(String login) {
 		for (String username : usuarios.keySet()) {
 			if (usuarios.get(username).getX2p() >= 1000) {
