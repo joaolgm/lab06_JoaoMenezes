@@ -27,18 +27,4 @@ public class PlataformaTest {
 		}
 	}
 
-	@Test
-	public void testPlataforma() {
-		try {
-			jogo1 = new Plataforma(null, 10, 0, 0, 0);
-		} catch (Exception e) {
-			assertEquals("Nome do jogo nao pode ser nulo.", e.getMessage());
-		}
-		try {
-			jogo1 = new Plataforma("", 10, 0, 0, 0);
-		} catch (Exception e) {
-			assertEquals("Nome do jogo nao pode ser vazio.", e.getMessage());
-		}
-	}
-
 }

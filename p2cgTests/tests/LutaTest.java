@@ -26,18 +26,4 @@ public class LutaTest {
 			assertEquals("Quantidade de x2p errada.", e.getMessage());
 		}
 	}
-
-	@Test
-	public void testLuta() {
-		try {
-			jogo1 = new Luta(null, 10, 0, 0, 0);
-		} catch (Exception e) {
-			assertEquals("Nome do jogo nao pode ser nulo.", e.getMessage());
-		}
-		try {
-			jogo1 = new Luta("", 10, 0, 0, 0);
-		} catch (Exception e) {
-			assertEquals("Nome do jogo nao pode ser vazio.", e.getMessage());
-		}
-	}
 }
