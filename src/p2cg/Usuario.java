@@ -1,8 +1,10 @@
 package p2cg;
 
 import java.util.HashSet;
+
 /**
  * Classe responsavel por moldar o conceito abstrato de Usuario.
+ * 
  * @author Joao Menezes
  *
  */
@@ -12,48 +14,67 @@ public abstract class Usuario {
 	protected int x2p;
 	protected int dinheiro;
 	protected HashSet<Jogo> jogosComprados;
-	
-	public Usuario(String nome, String login, int dinheiro) {
+
+	public Usuario(String nome, String login, int dinheiro) throws Exception {
+		if (nome.equals(null) || nome.equals("")) {
+			throw new Exception("Nome nao pode ser nulo ou vazio");
+		}
+		if (login.equals(null) || login.equals("")) {
+			throw new Exception("Login nao pode ser nulo ou vazio");
+		}
+		if (dinheiro < 0) {
+			throw new Exception("Dinheiro nao pode ser menor que zero");
+		}
 		this.nome = nome;
 		this.login = login;
 		this.dinheiro = dinheiro;
 	}
+
 	/**
-	 * Metodo responsavel por comprar jogo para usuario e adicionar na lista de jogos.
+	 * Metodo responsavel por comprar jogo para usuario e adicionar na lista de
+	 * jogos.
+	 * 
 	 * @param jogo
 	 * @param preco
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void comprarJogo(Jogo jogo, int preco) throws Exception {
+		if (preco < 0) {
+			throw new Exception("Preco nao pode ser menor que zero");
+		}
 		double newPreco = preco - jogo.getPreco();
 		if (newPreco < this.dinheiro) {
 			jogosComprados.add(jogo);
 			dinheiro -= preco;
 		}
 	}
+
 	/**
-	 * Metodo responsavel por registrar a quantidade de vezes que um jogo foi jogado.
+	 * Metodo responsavel por registrar a quantidade de vezes que um jogo foi
+	 * jogado.
+	 * 
 	 * @param jogo
 	 * @param score
 	 * @param zerou
+	 * @throws Exception
 	 */
-	public void registraJogadas(Jogo jogo, int score, boolean zerou) {
+	public void registraJogadas(Jogo jogo, int score, boolean zerou) throws Exception {
+		if (score < 0) {
+			throw new Exception("Score nao pode ser menor que zero");
+		}
 		int pontos = jogo.registraJogada(jogo, score, zerou);
 		setX2p(pontos);
 	}
 
-	public int getQtdJogosComprados(){
+	public int getQtdJogosComprados() {
 		return jogosComprados.size();
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) throws Exception {
-		if (nome == null || nome.equals("")) {
-			throw new Exception("Nome nao pode ser nulo ou vazio");
-		}
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -69,10 +90,7 @@ public abstract class Usuario {
 		return dinheiro;
 	}
 
-	public void setDinheiro(int dinheiro) throws Exception{
-		if (dinheiro < 0) {
-			throw new Exception("Quantidade de dinheiro invalida");
-		}
+	public void setDinheiro(int dinheiro) {
 		this.dinheiro = dinheiro;
 	}
 
@@ -82,9 +100,8 @@ public abstract class Usuario {
 
 	@Override
 	public String toString() {
-		String imprime = getLogin() + System.lineSeparator() + 
-				getNome() + " - " + "Jogador" + getClass() + System.lineSeparator() + 
-				"Lista de Jogos:";
+		String imprime = getLogin() + System.lineSeparator() + getNome() + " - " + "Jogador" + getClass()
+				+ System.lineSeparator() + "Lista de Jogos:";
 		for (Jogo jogo : jogosComprados) {
 			imprime += jogo.toString();
 		}

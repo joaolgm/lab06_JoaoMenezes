@@ -2,6 +2,7 @@ package p2cg;
 
 /**
  * Classe responsavel por moldar o conceito abstrato de Jogo
+ * 
  * @author Joao Menezes
  */
 public abstract class Jogo {
@@ -10,25 +11,23 @@ public abstract class Jogo {
 	private int maiorScore = 0;
 	private int qtdVezesJogadas = 0;
 	private int qtdVezesZeradas = 0;
-	
+
 	/**
 	 * Metodo construtor de Jogo.
+	 * 
 	 * @param nome
 	 * @param preco
 	 * @param maiorScore
 	 * @param qtdVezesJogadas
 	 * @param qtdVezesZeradas
 	 */
-	
+
 	public Jogo(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) throws Exception {
-		if (nome.equals("") || nome.equals(null)) {
-			throw new Exception("Nome nulo ou vazio");
-		} if (preco < 0) {
-			throw new Exception("Valor invalido");
-		} if (maiorScore < 0) {
-			throw new Exception("Score invalido");
-		} if (qtdVezesJogadas < 0 || qtdVezesZeradas < 0) {
-			throw new Exception("Quantidade invalida");
+		if (nome.equals(null) || nome.equals("")) {
+			throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
+		}
+		if (preco < 0 || maiorScore < 0 || qtdVezesJogadas < 0 || qtdVezesZeradas < 0) {
+			throw new Exception("Quantidade nao pode ser menor que zero");
 		}
 		this.nome = nome;
 		this.preco = preco;
@@ -72,17 +71,16 @@ public abstract class Jogo {
 	public int getPreco() {
 		return preco;
 	}
-	
-	public abstract int registraJogada(Jogo jogo, int score, boolean zerou);
+
+	public abstract int registraJogada(Jogo jogo, int score, boolean zerou) throws Exception;
 
 	@Override
 	public String toString() {
-		return "+ " + getNome() + "- " + getClass() + ":" + System.lineSeparator() +
-			"==> Jogou " + getQtdVezesJogadas() + "vez(es)" + System.lineSeparator() +
-			"==> Zerou " + getQtdVezesZeradas() + "vez(es)" + System.lineSeparator() +
-			"==> Maior score: " + getMaiorScore();
+		return "+ " + getNome() + "- " + getClass() + ":" + System.lineSeparator() + "==> Jogou " + getQtdVezesJogadas()
+				+ "vez(es)" + System.lineSeparator() + "==> Zerou " + getQtdVezesZeradas() + "vez(es)"
+				+ System.lineSeparator() + "==> Maior score: " + getMaiorScore();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,6 +118,6 @@ public abstract class Jogo {
 		if (qtdVezesZeradas != other.qtdVezesZeradas)
 			return false;
 		return true;
-	}	
-	
+	}
+
 }

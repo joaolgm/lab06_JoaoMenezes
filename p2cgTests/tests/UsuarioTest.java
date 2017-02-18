@@ -19,22 +19,42 @@ public class UsuarioTest {
 	user = new Veterano("joao", "joao.menezes", 100, 1000);
 	jogo3 = new Plataforma("mario", 1337, 0, 0, 0);
 	}
-	
+
 	@Test
-	public void testComprarJogo() {
+	public void testUsuario() {
 		try {
-			user.comprarJogo(jogo3, jogo3.getPreco());
+			user = new Veterano(null, "joao.menezes", 100, 1000);
 		} catch (Exception e) {
-			assertEquals("Nao tem dinheiro suficiente para comprar o jogo.", e.getMessage());
+			assertEquals("Nome nao pode ser nulo ou vazio", e.getMessage());
+		}
+		try {
+			user = new Veterano("", "joao.menezes", 100, 1000);
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio", e.getMessage());
+		}
+		try {
+			user = new Veterano("joao menezes", null, 100, 1000);
+		} catch (Exception e) {
+			assertEquals("Login nao pode ser nulo ou vazio", e.getMessage());
+		}
+		try {
+			user = new Veterano("joao menezes", "", 100, 1000);
+		} catch (Exception e) {
+			assertEquals("Login nao pode ser nulo ou vazio", e.getMessage());
+		}
+		try {
+			user = new Veterano("joao menezes", "joao.menezes", -5, 1000);
+		} catch (Exception e) {
+			assertEquals("Dinheiro nao pode ser menor que zero", e.getMessage());
 		}
 	}
-
+	
 	@Test
 	public void testSetDinheiro() {
 		try {
 			user.setDinheiro(-100);
 		} catch (Exception e) {
-			assertEquals("Quantidade de dinheiro invalida", e.getMessage());		
+			assertEquals("Dinheiro nao pode ser menor que zero", e.getMessage());		
 			}
 	}
 	

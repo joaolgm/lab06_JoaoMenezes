@@ -4,62 +4,84 @@ import java.util.HashMap;
 
 /**
  * Classe responsavel pela simbolizacao da Loja
+ * 
  * @author Joao Menezes
  */
 
 public class Loja {
 	private HashMap<String, Usuario> usuarios;
-	
+
 	/**
 	 * Metodo para adicionar usuarios na loja utilizando o objeto usuario.
+	 * 
 	 * @param usuario
 	 */
 	public void adicionaUsuario(Usuario usuario) {
 		usuarios.put(usuario.getLogin(), usuario);
 	}
+
 	/**
 	 * Metodo para adicionar dinheiro na conta de certo usuario.
+	 * 
 	 * @param usuario
 	 * @param dinheiro
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void adicionaDinheiro(Usuario usuario, int dinheiro) throws Exception {
-		if (usuarios.containsKey(usuario.getLogin())) {
-			usuario.setDinheiro(dinheiro);
+		try {
+			if (usuarios.containsKey(usuario.getLogin())) {
+				usuario.setDinheiro(dinheiro);
+			}
+		} catch (Exception e) {
+			System.out.println("Dinheiro nao pode ser menor que zero");
 		}
 	}
+
 	/**
 	 * Metodo para vender jogos para algum usuario.
+	 * 
 	 * @param jogo
 	 * @param usuario
 	 * @param preco
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void venderJogos(Jogo jogo, Usuario usuario, int preco) throws Exception {
-		if (usuarios.containsKey(usuario.getLogin())) {
-			if (usuario.getDinheiro() >= preco) {
-				usuario.setDinheiro((usuario.getDinheiro() - preco));
-				usuario.jogosComprados.add(jogo);
+		try {
+			if (usuarios.containsKey(usuario.getLogin())) {
+				if (usuario.getDinheiro() >= preco) {
+					usuario.setDinheiro((usuario.getDinheiro() - preco));
+					usuario.jogosComprados.add(jogo);
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("Quantidade de dinheiro insuficiente");
 		}
 	}
+
 	/**
 	 * Metodo para dar upgrade para "veterano" em contas de usuarios.
+	 * 
 	 * @param login
+	 * @throws Exception
 	 */
-	public void upgrade(String login) {
-		for (String username : usuarios.keySet()) {
-			if (usuarios.get(username).getX2p() >= 1000) {
-				Veterano user = new Veterano(usuarios.get(username).getNome(), login, usuarios.get(username).getDinheiro(), usuarios.get(username).getX2p());
-				usuarios.remove(username);
-				usuarios.put(login, user);
+	public void upgrade(String login) throws Exception {
+		try {
+			for (String username : usuarios.keySet()) {
+				if (usuarios.get(username).getX2p() >= 1000) {
+					Veterano user = new Veterano(usuarios.get(username).getNome(), login,
+							usuarios.get(username).getDinheiro(), usuarios.get(username).getX2p());
+					usuarios.remove(username);
+					usuarios.put(login, user);
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("O usuario ainda nao atingiu 1000 pontos x2p");
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		String imprime = "=== Central P2-CG ==="; 
+		String imprime = "=== Central P2-CG ===";
 		for (String username : usuarios.keySet()) {
 			imprime += usuarios.get(username).toString();
 		}

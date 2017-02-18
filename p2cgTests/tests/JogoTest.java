@@ -2,46 +2,60 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import p2cg.Jogo;
+import p2cg.Plataforma;
 
 public class JogoTest {
 
 	Jogo jogo;
-	
-	@Test
-	public void testJogo() {
-		try {
-			new Jogo();
-		} catch (Exception e) {
-			
-		}
+
+	@Before
+	public void start() throws Exception {
+		jogo = new Plataforma("mario", 1337, 0, 0, 0);
 	}
 
 	@Test
 	public void testSetNome() {
-		fail("Not yet implemented");
+		try {
+			jogo.setNome("");
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio", e.getMessage());
+		}
+		try {
+			jogo.setNome(null);
+		} catch (Exception e) {
+			assertEquals("Nome nao pode ser nulo ou vazio", e.getMessage());
+		}
 	}
 
 	@Test
 	public void testSetMaiorScore() {
-		fail("Not yet implemented");
+		try {
+			jogo.setMaiorScore(-20);
+		} catch (Exception e) {
+			assertEquals("Quantidade nao pode ser menor que zero", e.getMessage());
+		}
 	}
 
 	@Test
 	public void testSetQtdVezesJogadas() {
-		fail("Not yet implemented");
+		try {
+			jogo.setMaiorScore(-50);
+		} catch (Exception e) {
+			assertEquals("Quantidade nao pode ser menor que zero", e.getMessage());
+		}
 	}
 
 	@Test
 	public void testSetQtdVezesZeradas() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRegistraJogada() {
-		fail("Not yet implemented");
+		try {
+			jogo.setQtdVezesZeradas(-1);
+		} catch (Exception e) {
+			assertEquals("Quantidade nao pode ser menor que zero", e.getMessage());
+		}
 	}
 
 }
