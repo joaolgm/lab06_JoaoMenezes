@@ -16,10 +16,10 @@ public abstract class Usuario {
 	protected HashSet<Jogo> jogosComprados;
 
 	public Usuario(String nome, String login, int dinheiro) throws Exception {
-		if (nome.equals(null) || nome.equals("")) {
+		if (nome == null || nome.equals("")) {
 			throw new Exception("Nome nao pode ser nulo ou vazio");
 		}
-		if (login.equals(null) || login.equals("")) {
+		if (login == null || login.equals("")) {
 			throw new Exception("Login nao pode ser nulo ou vazio");
 		}
 		if (dinheiro < 0) {

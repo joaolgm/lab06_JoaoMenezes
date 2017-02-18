@@ -23,7 +23,7 @@ public abstract class Jogo {
 	 */
 
 	public Jogo(String nome, int preco, int maiorScore, int qtdVezesJogadas, int qtdVezesZeradas) throws Exception {
-		if (nome.equals(null) || nome.equals("")) {
+		if (nome == null || nome.equals("")) {
 			throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
 		}
 		if (preco < 0 || maiorScore < 0 || qtdVezesJogadas < 0 || qtdVezesZeradas < 0) {
